@@ -1,0 +1,51 @@
+{
+  "arrayTrailing": [1, 2, 3,],
+  "arraySingle": ["only",],
+  "arrayNested": [
+    [1, 2,],
+    [3, 4,],
+  ],
+
+  "objectTrailing": {
+    "a": 1,
+    "b": 2,
+  },
+
+  "objectSingle": {
+    "only": true,
+  },
+
+  "objectNested": {
+    "level1": {
+      "level2": {
+        "value": "deep",
+      },
+    },
+  },
+
+  "mixed": [
+    {
+      "id": 1,
+      "name": "item1",
+    },
+    {
+      "id": 2,
+      "name": "item2",
+    },
+  ],
+
+  "emptyArrayTrailing": [ ],
+  "emptyObjectTrailing": { },
+
+  "stringWithComma": "this,is,not,a,separator,",
+
+  "complex": [
+    {
+      "arr": [1,2,3,],
+      "obj": {
+        "x": 10,
+        "y": 20,
+      },
+    },
+  ],
+}

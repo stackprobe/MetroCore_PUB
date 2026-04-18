@@ -1,0 +1,95 @@
+{
+  "nullValue": null,
+  "booleanTrue": true,
+  "booleanFalse": false,
+  "numberInt": 123,
+  "numberNegative": -456,
+  "numberFloat": 3.14159,
+  "numberExp": 1.23e+10,
+
+  "stringSimple": "hello",
+  "stringUnicode": "こんにちは世界🌏",
+  "stringEscaped": "line1\nline2\t\"quoted\"\\backslash\/slash\b\f\r",
+  "stringEmpty": "",
+
+  "objectEmpty": {},
+  "arrayEmpty": [],
+
+  "arrayMixed": [
+    null,
+    true,
+    false,
+    0,
+    -1,
+    1.23,
+    "text",
+    [],
+    {},
+    [1, 2, 3],
+    {"nested": "value"}
+  ],
+
+  "objectNested": {
+    "level1": {
+      "level2": {
+        "level3": {
+          "value": "deep"
+        }
+      }
+    }
+  },
+
+  "arrayNested": [
+    [
+      [
+        [
+          "deep array"
+        ]
+      ]
+    ]
+  ],
+
+  "objectWithVariousKeys": {
+    "": "empty key",
+    " ": "space key",
+    "special!@#$%^&*()": "symbols",
+    "数字キー123": "number in key",
+    "true": "string key true",
+    "null": "string key null"
+  },
+
+  "largeArray": [
+    1,2,3,4,5,6,7,8,9,10
+  ],
+
+  "precisionTest": {
+    "bigInteger": 9007199254740991,
+    "smallFloat": 0.000000000123,
+    "longFloat": 1234567890.123456789
+  },
+
+  "duplicateKeysTest": {
+    "key": "first",
+    "key": "second"
+  },
+
+  "dateLikeString": "2026-04-18T12:34:56Z",
+
+  "complexStructure": [
+    {
+      "id": 1,
+      "name": "item1",
+      "tags": ["a", "b", "c"],
+      "meta": {
+        "created": "2026-01-01",
+        "valid": true
+      }
+    },
+    {
+      "id": 2,
+      "name": "item2",
+      "tags": [],
+      "meta": null
+    }
+  ]
+}
