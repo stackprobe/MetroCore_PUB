@@ -9,8 +9,10 @@ import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 import javax.xml.stream.XMLInputFactory;
@@ -24,6 +26,30 @@ public class XMLTools {
         public String value;
         public List<Node> children = new ArrayList<Node>();
         public boolean attributeFlag;
+
+        private Map<String, List<Node>> _name2node = null;
+
+        private void ensureLoadName2Node() {
+        	if (_name2node == null) {
+        		_name2node = new HashMap<String, List<Node>>();
+
+        		for (Node node : children) {
+        			if (!_name2node.containsKey(node.name)) {
+        				_name2node.put(node.name, new ArrayList<Node>());
+        			}
+        			_name2node.get(node.name).add(node);
+        		}
+        	}
+        }
+
+        public Node getNode(String name) {
+        	return getNodes(name).get(0);
+        }
+
+        public List<Node> getNodes(String name) {
+        	ensureLoadName2Node();
+        	return _name2node.get(name);
+        }
     }
 
     public static Node loadFromFile(String xmlFile) throws IOException, XMLStreamException {
