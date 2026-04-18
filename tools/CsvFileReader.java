@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvFileReader implements Closeable {
-    public static final Charset ENCODING_SJIS = Charset.forName("Windows-31J");
-    public static final Charset ENCODING_UTF8 = Charset.forName("UTF-8");
+    public static final Charset CHARSET_SJIS = Charset.forName("Windows-31J");
+    public static final Charset CHARSET_UTF8 = Charset.forName("UTF-8");
 
     public static final char DELIMITER_COMMA = ',';  // for .csv
     public static final char DELIMITER_SPACE = ' ';  // for .ssv
@@ -48,10 +48,10 @@ public class CsvFileReader implements Closeable {
             		b2 == 0xBB &&
             		b3 == 0xBF
             		) {
-                return ENCODING_UTF8;
+                return CHARSET_UTF8;
             }
         }
-        return ENCODING_SJIS;
+        return CHARSET_SJIS;
     }
 
     private int lastChar;

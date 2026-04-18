@@ -11,7 +11,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 public class CsvFileWriter implements Closeable {
-    public static final Charset ENCODING_SJIS = Charset.forName("Windows-31J");
+    public static final Charset CHARSET_SJIS = Charset.forName("Windows-31J");
 
     public static final char DELIMITER_COMMA = ',';   // for .csv
     public static final char DELIMITER_SPACE = ' ';   // for .ssv
@@ -30,7 +30,7 @@ public class CsvFileWriter implements Closeable {
     }
 
     public CsvFileWriter(String filePath, boolean append) throws IOException {
-        this(filePath, append, ENCODING_SJIS);
+        this(filePath, append, CHARSET_SJIS);
     }
 
     public CsvFileWriter(String filePath, boolean append, Charset encoding) throws IOException {
@@ -128,7 +128,7 @@ public class CsvFileWriter implements Closeable {
     }
 
     public static void writeRows(String filePath, boolean append, List<String[]> rows) throws IOException {
-        writeRows(filePath, append, ENCODING_SJIS, rows);
+        writeRows(filePath, append, CHARSET_SJIS, rows);
     }
 
     public static void writeRows(String filePath, boolean append, Charset encoding, List<String[]> rows) throws IOException {
