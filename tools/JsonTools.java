@@ -212,6 +212,9 @@ public final class JsonTools {
 		}
 	}
 
+	private static Charset CHARSET_UTF_32BE = Charset.forName("UTF-32BE");
+	private static Charset CHARSET_UTF_32LE = Charset.forName("UTF-32LE");
+
 	private static Charset getFileEncoding(String file) throws IOException {
 		byte[] buff = new byte[4];
 
@@ -223,7 +226,7 @@ public final class JsonTools {
 					&& buff[1] == 0x00
 					&& (buff[2] & 0xff) == 0xfe
 					&& (buff[3] & 0xff) == 0xff) {
-				return Charset.forName("UTF-32BE");
+				return CHARSET_UTF_32BE;
 			}
 
 			if (readSize >= 4
@@ -231,7 +234,7 @@ public final class JsonTools {
 					&& (buff[1] & 0xff) == 0xfe
 					&& buff[2] == 0x00
 					&& buff[3] == 0x00) {
-				return Charset.forName("UTF-32LE");
+				return CHARSET_UTF_32LE;
 			}
 
 			if (readSize >= 2
