@@ -1,15 +1,6 @@
-# VisualStudio 2022
-bin/
-obj/
-.vs/
-packages/
+# In case compiled files are generated
+*.class
 
-# Release.bat
-out/
-
-# Factory
-tmp/
-
-# C-Language
-*.exe
-*.obj
+# OS junk files
+.DS_Store
+Thumbs.db
