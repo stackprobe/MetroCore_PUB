@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?test processing-instruction="yes" value="123"?>
+
+<!DOCTYPE root [
+  <!ELEMENT root ANY>
+  <!ENTITY company "OpenAI">
+  <!ENTITY author "Taro Yamada">
+  <!ENTITY specialChars "&#x3042;&#x3044;&#x3046;">
+]>
+
+<!-- ルート前コメント -->
+
+<root
+    xmlns="http://example.com/default"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ns1="http://example.com/ns1"
+    xmlns:ns2="http://example.com/ns2"
+    xml:lang="ja"
+    xml:space="preserve"
+    id="root-001"
+    enabled="true"
+    count="123"
+    price="45.67"
+    created="2026-04-18T15:30:45+09:00"
+    xsi:schemaLocation="http://example.com/default sample.xsd">
+
+    <!-- 基本的なテキスト要素 -->
+    <title>XML総合テスト</title>
+    <description>これは XML 読み込みクラスのテスト用データです。</description>
+    <empty1></empty1>
+    <empty2 />
+
+    <!-- 属性いろいろ -->
+    <attributes
+        attr1="value1"
+        attr2="123"
+        attr3="true"
+        attr4=""
+        attr5="A B C"
+        attr6="記号 &lt; &gt; &amp; &quot; &apos;"
+        ns1:flag="yes"
+        ns2:code="X-999" />
+
+    <!-- エスケープ文字 -->
+    <escaped>
+        &lt;tag&gt; &amp; &quot;double&quot; &apos;single&apos;
+    </escaped>
+
+    <!-- CDATA -->
+    <cdata><![CDATA[
+if (a < b && c > d) {
+    Console.WriteLine("XML <test> & sample");
+}
+    ]]></cdata>
+
+    <!-- エンティティ参照 -->
+    <entities>
+        <companyName>&company;</companyName>
+        <authorName>&author;</authorName>
+        <hiragana>&specialChars;</hiragana>
+    </entities>
+
+    <!-- 数値っぽい値 -->
+    <numbers>
+        <integer>0</integer>
+        <negativeInteger>-123</negativeInteger>
+        <bigInteger>9223372036854775807</bigInteger>
+        <decimal>123.456</decimal>
+        <negativeDecimal>-0.001</negativeDecimal>
+        <scientific>1.23e+10</scientific>
+        <zeroPadded>00042</zeroPadded>
+    </numbers>
+
+    <!-- 真偽値っぽい値 -->
+    <booleans>
+        <bool1>true</bool1>
+        <bool2>false</bool2>
+        <bool3>1</bool3>
+        <bool4>0</bool4>
+        <bool5>TRUE</bool5>
+    </booleans>
+
+    <!-- 日付時刻っぽい値 -->
+    <dates>
+        <date>2026-04-18</date>
+        <time>15:30:45</time>
+        <dateTime>2026-04-18T15:30:45+09:00</dateTime>
+        <utcDateTime>2026-04-18T06:30:45Z</utcDateTime>
+    </dates>
+
+    <!-- ネスト構造 -->
+    <hierarchy>
+        <level1 name="L1">
+            <level2 name="L2">
+                <level3 name="L3">deep value</level3>
+            </level2>
+        </level1>
+    </hierarchy>
+
+    <!-- 同名要素の繰り返し -->
+    <items>
+        <item id="1">apple</item>
+        <item id="2">banana</item>
+        <item id="3">orange</item>
+    </items>
+
+    <!-- mixed content -->
+    <mixed>
+        これは
+        <b>太字風</b>
+        のように
+        <i>子要素</i>
+        とテキストが混在する例です。
+    </mixed>
+
+    <!-- 空白保持確認 -->
+    <whitespacePreserved xml:space="preserve">  先頭と末尾に空白   </whitespacePreserved>
+    <whitespaceNormalized>
+        line1
+        line2
+        line3
+    </whitespaceNormalized>
+
+    <!-- 名前空間付き要素 -->
+    <ns1:person ns1:id="P001">
+        <ns1:name>山田 太郎</ns1:name>
+        <ns1:email>taro@example.com</ns1:email>
+    </ns1:person>
+
+    <ns2:person ns2:id="P002">
+        <ns2:name>John Smith</ns2:name>
+        <ns2:email>john@example.com</ns2:email>
+    </ns2:person>
+
+    <!-- Unicode -->
+    <unicode>
+        <japanese>日本語</japanese>
+        <emoji>😀🍣🚀</emoji>
+        <symbols>①Ⅱ㈱℡</symbols>
+        <multilingual>English العربية 中文 한국어</multilingual>
+    </unicode>
+
+    <!-- 特殊ケース -->
+    <specialCases>
+        <nullLike></nullLike>
+        <emptyString></emptyString>
+        <spaceString> </spaceString>
+        <tabString>	</tabString>
+        <newlineString>
+</newlineString>
+    </specialCases>
+
+    <!-- 順序依存テスト用 -->
+    <ordered>
+        <first>1</first>
+        <second>2</second>
+        <third>3</third>
+    </ordered>
+
+    <!-- 属性順序・要素順序の確認 -->
+    <attributeOrder z="last" a="first" m="middle" />
+    <siblingOrder>
+        <a>A</a>
+        <c>C</c>
+        <b>B</b>
+    </siblingOrder>
+
+    <!-- コメントを含む要素 -->
+    <withComment>
+        before
+        <!-- inner comment -->
+        after
+    </withComment>
+
+</root>
+
+<!-- ルート後コメント -->

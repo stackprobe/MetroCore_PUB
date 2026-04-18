@@ -62,7 +62,7 @@ public final class XMLTools {
         XMLInputFactory factory = XMLInputFactory.newInstance();
 
         try (java.io.InputStream is = Files.newInputStream(Paths.get(xmlFile))) {
-            XMLStreamReader reader = factory.createXMLStreamReader(is, "UTF-8");
+            XMLStreamReader reader = factory.createXMLStreamReader(is);
 
             while (reader.hasNext()) {
                 int eventType = reader.next();
