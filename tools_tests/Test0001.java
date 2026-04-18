@@ -1,4 +1,4 @@
-package tests;
+package tools_tests;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import tools.XMLTools;
 public class Test0001 {
 	public static void main(String[] args) {
 		try {
-			// -- choose --
+			// -- choose one --
 
 			test01();
 			test02();
