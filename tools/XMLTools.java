@@ -20,7 +20,10 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
-public class XMLTools {
+public final class XMLTools {
+	private XMLTools() {
+	}
+
     public static class Node {
         public String name;
         public String value;
