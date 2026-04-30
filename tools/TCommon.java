@@ -3,6 +3,7 @@ package tools;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,8 +18,10 @@ import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -432,5 +435,68 @@ public final class TCommon {
             result[i / 2] = (byte) ((hi << 4) + lw);
         }
         return result;
+    }
+
+    public static void createDir(String dirPath) throws IOException {
+        Files.createDirectories(Paths.get(dirPath));
+    }
+
+    public static void deletePath(String strPath) throws IOException, InterruptedException {
+        batch(Arrays.asList(
+        		"DEL /F /Q \"" + strPath + "\"",
+        		"RD  /S /Q \"" + strPath + "\""
+                ));
+    }
+
+    public static void batch(
+    		List<String> commands
+    		) throws IOException, InterruptedException {
+
+    	batch(commands, "");
+    }
+
+    public static void batch(
+    		List<String> commands,
+    		String workingDir
+    		) throws IOException, InterruptedException {
+
+        Path baseDir = Paths.get("C:\\temp");
+        Files.createDirectories(baseDir);
+
+        Path tempDir = baseDir.resolve("batch_" + UUID.randomUUID().toString());
+        Files.createDirectory(tempDir);
+
+        //Path tempDir = Files.createTempDirectory("batch_");
+        Path batFile = tempDir.resolve("run.bat");
+
+        try {
+            Files.write(batFile, commands, CHARSET_SJIS);
+
+            List<String> bootCommand = new ArrayList<>();
+            bootCommand.add("cmd");
+            bootCommand.add("/c");
+            bootCommand.add(batFile.toAbsolutePath().toString());
+
+            ProcessBuilder pb = new ProcessBuilder(bootCommand);
+
+            if (!"".equals(workingDir)) {
+                pb.directory(new File(workingDir));
+            }
+
+            // コンソールにそのまま表示
+            pb.inheritIO();
+
+            // 同期実行
+            pb.start().waitFor();
+        }
+        finally {
+            try {
+                Files.deleteIfExists(batFile);
+                Files.deleteIfExists(tempDir);
+            }
+            catch (IOException ex) {
+            	// none
+            }
+        }
     }
 }
