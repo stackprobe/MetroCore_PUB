@@ -43,7 +43,7 @@ public class CsvFileReader implements Closeable {
             int b2 = in.read();
             int b3 = in.read();
 
-            // UTF-8 with BOM
+            // ? UTF-8 with BOM
             if (b1 == 0xEF &&
                     b2 == 0xBB &&
                     b3 == 0xBF
@@ -101,7 +101,7 @@ public class CsvFileReader implements Closeable {
         return row.toArray(new String[0]);
     }
 
-    public String[][] readToEnd() throws IOException {
+    public List<String[]> readToEnd() throws IOException {
         List<String[]> rows = new ArrayList<String[]>();
 
         for (;;) {
@@ -112,7 +112,7 @@ public class CsvFileReader implements Closeable {
             }
             rows.add(row);
         }
-        return rows.toArray(new String[0][]);
+        return rows;
     }
 
     @Override
@@ -123,15 +123,15 @@ public class CsvFileReader implements Closeable {
         }
     }
 
-    public static String[][] readToEnd(String filePath) throws IOException {
+    public static List<String[]> readToEnd(String filePath) throws IOException {
         return readToEnd(filePath, getFileEncoding(filePath));
     }
 
-    public static String[][] readToEnd(String filePath, Charset encoding) throws IOException {
+    public static List<String[]> readToEnd(String filePath, Charset encoding) throws IOException {
         return readToEnd(filePath, encoding, DELIMITER_COMMA);
     }
 
-    public static String[][] readToEnd(String filePath, Charset encoding, char delimiter) throws IOException {
+    public static List<String[]> readToEnd(String filePath, Charset encoding, char delimiter) throws IOException {
         try (CsvFileReader reader = new CsvFileReader(filePath, encoding, delimiter)) {
             return reader.readToEnd();
         }

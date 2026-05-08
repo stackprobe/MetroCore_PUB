@@ -449,22 +449,22 @@ public final class TCommon {
     }
 
     public static void batch(
-    		List<String> commands
-    		) throws IOException, InterruptedException {
+            List<String> commands
+            ) throws IOException, InterruptedException {
 
-    	batch(commands, "");
+        batch(commands, "");
     }
 
     public static void batch(
-    		List<String> commands,
-    		String workingDir
-    		) throws IOException, InterruptedException {
+            List<String> commands,
+            String workingDir
+            ) throws IOException, InterruptedException {
 
         Path baseDir = Paths.get("C:\\temp");
-        Files.createDirectories(baseDir);
+        //Files.createDirectories(baseDir);
 
         Path tempDir = baseDir.resolve("batch_" + UUID.randomUUID().toString());
-        Files.createDirectory(tempDir);
+        Files.createDirectories(tempDir);
 
         //Path tempDir = Files.createTempDirectory("batch_");
         Path batFile = tempDir.resolve("run.bat");
@@ -495,7 +495,7 @@ public final class TCommon {
                 Files.deleteIfExists(tempDir);
             }
             catch (IOException ex) {
-            	// none
+                // none
             }
         }
     }
